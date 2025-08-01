@@ -1,5 +1,4 @@
-/* estilos.css */
-
+/* Reset y base */
 * {
   margin: 0;
   padding: 0;
@@ -102,7 +101,39 @@ footer a {
   text-decoration: underline;
 }
 
-/* RESPONSIVE */
+/* Carrusel automático en bucle */
+.carrusel-auto {
+  width: 100%;
+  overflow: hidden;
+  background-color: #000;
+  padding: 15px 0;
+}
+
+.carrusel-auto .imagenes {
+  display: flex;
+  width: max-content;
+  animation: deslizar 40s linear infinite;
+}
+
+.carrusel-auto img {
+  width: 280px;
+  height: 180px;
+  object-fit: cover;
+  margin: 0 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+  transition: transform 0.3s ease;
+}
+
+.carrusel-auto .imagenes:hover {
+  animation-play-state: paused;
+}
+
+.carrusel-auto img:hover {
+  transform: scale(1.1);
+}
+
+/* Responsive */
 @media (max-width: 768px) {
   nav ul {
     flex-direction: column;
@@ -125,6 +156,11 @@ footer a {
   .galeria {
     grid-template-columns: 1fr;
   }
+
+  .carrusel-auto img {
+    width: 220px;
+    height: 140px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -142,5 +178,13 @@ footer a {
 
   footer {
     font-size: 12px;
+  }
+}
+@keyframes deslizar {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
   }
 }
