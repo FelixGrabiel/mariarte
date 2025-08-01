@@ -1,0 +1,17 @@
+{
+  "name": "tienda-web",
+  "version": "1.0.0",
+  "description": "Proyecto de tienda en línea",
+  "main": "src/index.html",
+  "scripts": {
+    "start": "live-server src",
+    "build": "echo 'Build step not defined'",
+    "test": "echo 'Test step not defined'"
+  },
+  "author": "Tu Nombre",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "live-server": "^1.2.1"
+  }
+}
