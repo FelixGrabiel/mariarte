@@ -1,61 +1,131 @@
-let carrito = [];
+document.addEventListener('DOMContentLoaded', () => {
+  const carritoBtn = document.getElementById('carrito-btn');
+  const modalCarrito = document.getElementById('modal-carrito');
+  const listaCarrito = document.getElementById('lista-carrito');
+  const totalCarrito = document.getElementById('total-carrito');
+  const cerrarCarrito = document.getElementById('cerrar-carrito');
+  const vaciarCarrito = document.getElementById('vaciar-carrito');
+  const enviarPedido = document.getElementById('enviar-pedido');
 
-document.querySelectorAll('.agregar-carrito').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const nombre = btn.getAttribute('data-nombre');
-    const precio = parseFloat(btn.getAttribute('data-precio'));
+  let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
-    const productoExistente = carrito.find(item => item.nombre === nombre);
-    if (productoExistente) {
-      productoExistente.cantidad++;
-    } else {
-      carrito.push({ nombre, precio, cantidad: 1 });
-    }
+  carritoBtn.addEventListener('click', () => {
+    modalCarrito.style.display = modalCarrito.style.display === 'block' ? 'none' : 'block';
+  });
 
+  cerrarCarrito.addEventListener('click', () => {
+    modalCarrito.style.display = 'none';
+  });
+
+  vaciarCarrito.addEventListener('click', () => {
+    carrito = [];
+    guardarCarrito();
     actualizarCarrito();
   });
-});
 
-document.getElementById('carrito-btn').addEventListener('click', () => {
-  document.getElementById('modal-carrito').style.display = 'block';
-  actualizarCarrito();
-});
+  enviarPedido.addEventListener('click', () => {
+    if (carrito.length === 0) {
+      alert('Tu carrito está vacío.');
+      return;
+    }
 
-document.getElementById('cerrar-carrito').addEventListener('click', () => {
-  document.getElementById('modal-carrito').style.display = 'none';
-});
+    let mensaje = 'Hola, quiero pedir los siguientes productos:%0A';
+    carrito.forEach(producto => {
+      mensaje += `- ${producto.nombre} x${producto.cantidad} - S/.${(producto.precio * producto.cantidad).toFixed(2)}%0A`;
+    });
 
-document.getElementById('vaciar-carrito').addEventListener('click', () => {
-  carrito = [];
-  actualizarCarrito();
-});
+    const url = `https://wa.me/51928850901?text=${mensaje}`;
+    window.open(url, '_blank');
+  });
 
-document.getElementById('enviar-pedido').addEventListener('click', () => {
-  if (carrito.length === 0) {
-    alert('Tu carrito está vacío.');
-    return;
+  function guardarCarrito() {
+    localStorage.setItem('carrito', JSON.stringify(carrito));
   }
 
-  let mensaje = 'Hola, quiero hacer un pedido:%0A';
-  carrito.forEach(item => {
-    mensaje += `• ${item.nombre} x${item.cantidad} - S/ ${(item.precio * item.cantidad).toFixed(2)}%0A`;
+  function actualizarCarrito() {
+    listaCarrito.innerHTML = '';
+    let total = 0;
+
+    carrito.forEach((item, index) => {
+      const li = document.createElement('li');
+      li.innerHTML = `
+        ${item.nombre} - S/.${item.precio.toFixed(2)} x ${item.cantidad}
+        <div class="botones-carrito">
+          <button class="restar" data-index="${index}">-</button>
+          <button class="sumar" data-index="${index}">+</button>
+          <button class="eliminar" data-index="${index}">🗑️</button>
+        </div>
+      `;
+
+      listaCarrito.appendChild(li);
+      total += item.precio * item.cantidad;
+    });
+
+    totalCarrito.textContent = `Total: S/.${total.toFixed(2)}`;
+
+    // Botones funcionales
+    document.querySelectorAll('.restar').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const index = parseInt(btn.getAttribute('data-index'));
+        if (carrito[index].cantidad > 1) {
+          carrito[index].cantidad--;
+        } else {
+          carrito.splice(index, 1);
+        }
+        guardarCarrito();
+        actualizarCarrito();
+      });
+    });
+
+    document.querySelectorAll('.sumar').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const index = parseInt(btn.getAttribute('data-index'));
+        carrito[index].cantidad++;
+        guardarCarrito();
+        actualizarCarrito();
+      });
+    });
+
+    document.querySelectorAll('.eliminar').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const index = parseInt(btn.getAttribute('data-index'));
+        carrito.splice(index, 1);
+        guardarCarrito();
+        actualizarCarrito();
+      });
+    });
+  }
+
+  const botonesAgregar = document.querySelectorAll('.agregar-carrito');
+  botonesAgregar.forEach(boton => {
+    boton.addEventListener('click', () => {
+      const nombre = boton.getAttribute('data-nombre');
+      const precio = parseFloat(boton.getAttribute('data-precio'));
+      const cantidadInput = boton.previousElementSibling;
+      const cantidad = parseInt(cantidadInput?.value) || 1;
+
+      if (cantidad <= 0) {
+        alert("La cantidad debe ser mayor a cero.");
+        return;
+      }
+
+      const productoExistente = carrito.find(item => item.nombre === nombre);
+      if (productoExistente) {
+        productoExistente.cantidad += cantidad;
+      } else {
+        carrito.push({ nombre, precio, cantidad });
+      }
+
+      guardarCarrito();
+      actualizarCarrito();
+
+      // Animación visual al agregar
+      carritoBtn.classList.add('carrito-animado');
+      setTimeout(() => {
+        carritoBtn.classList.remove('carrito-animado');
+      }, 400);
+    });
   });
 
-  const total = carrito.reduce((sum, item) => sum + item.precio * item.cantidad, 0);
-  mensaje += `%0ATotal: S/ ${total.toFixed(2)}`;
-
-  const numeroWhatsApp = '51928850901';
-  const url = `https://wa.me/${numeroWhatsApp}?text=${mensaje}`;
-  window.open(url, '_blank');
+  actualizarCarrito(); // Inicializar al cargar
 });
-
-function actualizarCarrito() {
-  const lista = document.getElementById('lista-carrito');
-  lista.innerHTML = '';
-
-  carrito.forEach(item => {
-    const li = document.createElement('li');
-    li.textContent = `${item.nombre} x${item.cantidad} - S/ ${(item.precio * item.cantidad).toFixed(2)}`;
-    lista.appendChild(li);
-  });
-}
