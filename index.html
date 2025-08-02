@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MariArte Accesorios</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="carrito.css">
+  <link rel="icon" href="imagenes/logo.jpg" type="image/x-icon">
+  <meta name="description" content="MariArte Accesorios - Bisutería artesanal, accesorios personalizados y pedidos por WhatsApp.">
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="imagenes/logo.jpg" alt="MariArte Logo">
+      <h1>MariArte Accesorios</h1>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#productos">Productos</a></li>
+        <li><a href="#personalizados">Personalizados</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+    <button id="carrito-btn" class="carrito-btn">🛒</button>
+  </header>
+
+  <div class="carrusel-auto">
+    <div class="imagenes">
+      <!-- Carrusel automático (mismo contenido) -->
+      <img src="productos/producto1.jpeg" alt="Producto 1">
+      <img src="productos/producto2.jpeg" alt="Producto 2">
+      <img src="productos/producto3.jpeg" alt="Producto 3">
+      <img src="productos/producto4.jpeg" alt="Producto 4">
+      <img src="productos/producto5.jpeg" alt="Producto 5">
+      <img src="productos/producto6.jpeg" alt="Producto 6">
+      <img src="productos/producto7.jpeg" alt="Producto 7">
+      <img src="productos/producto8.jpeg" alt="Producto 8">
+      <img src="productos/producto9.jpeg" alt="Producto 9">
+      <img src="productos/producto10.jpeg" alt="Producto 10">
+      <img src="productos/producto11.jpeg" alt="Producto 11">
+      <img src="productos/producto12.jpeg" alt="Producto 12">
+      <img src="productos/producto13.jpeg" alt="Producto 13">
+      <img src="productos/producto1.jpeg" alt="Producto 1">
+      <img src="productos/producto2.jpeg" alt="Producto 2">
+      <img src="productos/producto3.jpeg" alt="Producto 3">
+      <img src="productos/producto4.jpeg" alt="Producto 4">
+    </div>
+  </div>
+
+  <section id="inicio" class="seccion">
+    <h2>Bienvenidos a MariArte</h2>
+    <p>Bisutería artesanal, un regalo para ti o para alguien especial ❤️</p>
+  </section>
+
+  <section id="productos" class="seccion">
+    <h2>Nuestros Productos</h2>
+    <div class="galeria">
+      <div class="producto">
+        <img src="productos/producto1.jpeg" alt="Pulsera Corazones">
+        <p>Pulsera Corazones</p>
+        <button class="agregar-carrito" data-nombre="Pulsera Corazones" data-precio="15">Agregar</button>
+      </div>
+      <div class="producto">
+        <img src="productos/producto2.jpeg" alt="Pulsera de Inicial">
+        <p>Pulsera de Inicial</p>
+        <button class="agregar-carrito" data-nombre="Pulsera de Inicial" data-precio="18">Agregar</button>
+      </div>
+      <div class="producto">
+        <img src="productos/producto3.jpeg" alt="Collar personalizado">
+        <p>Collar personalizado</p>
+        <button class="agregar-carrito" data-nombre="Collar personalizado" data-precio="20">Agregar</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="personalizados" class="seccion">
+    <h2>Pedidos Personalizados</h2>
+    <p>¿Tienes una idea especial? Escríbenos para crear tu accesorio personalizado.</p>
+  </section>
+
+  <section id="contacto" class="seccion">
+    <h2>Contáctanos</h2>
+    <p>Haz tu pedido por WhatsApp:</p>
+    <a class="btn-wsp" href="https://wa.me/51928850901" target="_blank">Enviar mensaje</a>
+  </section>
+
+  <div id="modal-carrito" class="modal-carrito">
+    <h2>Carrito de Compras</h2>
+    <ul id="lista-carrito"></ul>
+    <button id="vaciar-carrito">Vaciar carrito</button>
+    <a id="enviar-pedido" class="btn-wsp" target="_blank">Enviar pedido por WhatsApp</a>
+    <button id="cerrar-carrito">Cerrar</button>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 MariArte Accesorios - Diseñado con ❤️</p>
+    <p>Síguenos en Instagram: <a href="https://www.instagram.com/mariarte.accesorios" target="_blank">@mariarte.accesorios</a></p>
+  </footer>
+
+  <script src="js/carrito.js"></script>
+</body>
+</html>
