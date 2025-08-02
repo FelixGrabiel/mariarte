@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MariArte Accesorios</title>
   <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="carrito.css">
   <link rel="icon" href="imagenes/logo.jpg" type="image/x-icon">
   <meta name="description" content="MariArte Accesorios - Bisutería artesanal, accesorios personalizados y pedidos por WhatsApp.">
 </head>
@@ -28,7 +27,6 @@
 
   <div class="carrusel-auto">
     <div class="imagenes">
-      <!-- Carrusel automático (mismo contenido) -->
       <img src="productos/producto1.jpeg" alt="Producto 1">
       <img src="productos/producto2.jpeg" alt="Producto 2">
       <img src="productos/producto3.jpeg" alt="Producto 3">
@@ -53,27 +51,77 @@
     <h2>Bienvenidos a MariArte</h2>
     <p>Bisutería artesanal, un regalo para ti o para alguien especial ❤️</p>
   </section>
-
-  <section id="productos" class="seccion">
-    <h2>Nuestros Productos</h2>
-    <div class="galeria">
-      <div class="producto">
-        <img src="productos/producto1.jpeg" alt="Pulsera Corazones">
-        <p>Pulsera Corazones</p>
-        <button class="agregar-carrito" data-nombre="Pulsera Corazones" data-precio="15">Agregar</button>
-      </div>
-      <div class="producto">
-        <img src="productos/producto2.jpeg" alt="Pulsera de Inicial">
-        <p>Pulsera de Inicial</p>
-        <button class="agregar-carrito" data-nombre="Pulsera de Inicial" data-precio="18">Agregar</button>
-      </div>
-      <div class="producto">
-        <img src="productos/producto3.jpeg" alt="Collar personalizado">
-        <p>Collar personalizado</p>
-        <button class="agregar-carrito" data-nombre="Collar personalizado" data-precio="20">Agregar</button>
-      </div>
+<section id="productos" class="seccion">
+  <h2>Nuestros Productos</h2>
+  <div class="productos-grid">
+    <div class="producto">
+      <img src="productos/producto1.jpeg" alt="Pulsera Corazones">
+      <p>Pulsera Corazones S/15</p>
+      <button class="agregar-carrito" data-nombre="Pulsera Corazones" data-precio="15">Agregar</button>
     </div>
-  </section>
+    <div class="producto">
+      <img src="productos/producto2.jpeg" alt="Pulsera de Inicial">
+      <p>Pulsera de Inicial S/18</p>
+      <button class="agregar-carrito" data-nombre="Pulsera de Inicial" data-precio="18">Agregar</button>
+    </div>
+    <div class="producto">
+      <img src="productos/producto3.jpeg" alt="Collar Personalizado">
+      <p>Collar Personalizado S/20</p>
+      <button class="agregar-carrito" data-nombre="Collar Personalizado" data-precio="20">Agregar</button>
+    </div>
+    <div class="producto">
+      <img src="productos/producto4.jpeg" alt="Aretes Florales">
+      <p>Aretes Florales S/12</p>
+      <button class="agregar-carrito" data-nombre="Aretes Florales" data-precio="12">Agregar</button>
+    </div>
+    <div class="producto">
+      <img src="productos/producto5.jpeg" alt="Collar con Nombre">
+      <p>Collar con Nombre S/25</p>
+      <button class="agregar-carrito" data-nombre="Collar con Nombre" data-precio="25">Agregar</button>
+    </div>
+    <div class="producto">
+      <img src="productos/producto6.jpeg" alt="Pulsera con Charms">
+      <p>Pulsera con Charms S/16</p>
+      <button class="agregar-carrito" data-nombre="Pulsera con Charms" data-precio="16">Agregar</button>
+    </div>
+    <div class="producto">
+      <img src="productos/producto7.jpeg" alt="Set Collar + Aretes">
+      <p>Set Collar + Aretes S/30</p>
+      <button class="agregar-carrito" data-nombre="Set Collar + Aretes" data-precio="30">Agregar</button>
+    </div>
+    <div class="producto">
+      <img src="productos/producto8.jpeg" alt="Anillo Ajustable">
+      <p>Anillo Ajustable S/10</p>
+      <button class="agregar-carrito" data-nombre="Anillo Ajustable" data-precio="10">Agregar</button>
+    </div>
+    <div class="producto">
+      <img src="productos/producto9.jpeg" alt="Pulsera Parejas">
+      <p>Pulsera Parejas S/22</p>
+      <button class="agregar-carrito" data-nombre="Pulsera Parejas" data-precio="22">Agregar</button>
+    </div>
+    <div class="producto">
+      <img src="productos/producto10.jpeg" alt="Tobillera Artesanal">
+      <p>Tobillera Artesanal S/14</p>
+      <button class="agregar-carrito" data-nombre="Tobillera Artesanal" data-precio="14">Agregar</button>
+    </div>
+    <div class="producto">
+      <img src="productos/producto11.jpeg" alt="Collar Infinito">
+      <p>Collar Infinito S/19</p>
+      <button class="agregar-carrito" data-nombre="Collar Infinito" data-precio="19">Agregar</button>
+    </div>
+    <div class="producto">
+      <img src="productos/producto12.jpeg" alt="Aretes Iniciales">
+      <p>Aretes Iniciales S/11</p>
+      <button class="agregar-carrito" data-nombre="Aretes Iniciales" data-precio="11">Agregar</button>
+    </div>
+    <div class="producto">
+      <img src="productos/producto13.jpeg" alt="Collar Mariposa">
+      <p>Collar Mariposa S/17</p>
+      <button class="agregar-carrito" data-nombre="Collar Mariposa" data-precio="17">Agregar</button>
+    </div>
+  </div>
+</section>
+
 
   <section id="personalizados" class="seccion">
     <h2>Pedidos Personalizados</h2>
@@ -85,20 +133,23 @@
     <p>Haz tu pedido por WhatsApp:</p>
     <a class="btn-wsp" href="https://wa.me/51928850901" target="_blank">Enviar mensaje</a>
   </section>
+  <script src="/tienda-web/js/carrito.js"></script>
 
-  <div id="modal-carrito" class="modal-carrito">
-    <h2>Carrito de Compras</h2>
-    <ul id="lista-carrito"></ul>
-    <button id="vaciar-carrito">Vaciar carrito</button>
-    <a id="enviar-pedido" class="btn-wsp" target="_blank">Enviar pedido por WhatsApp</a>
-    <button id="cerrar-carrito">Cerrar</button>
-  </div>
+<div id="modal-carrito" class="modal-carrito">
+  <h2>Carrito de Compras</h2>
+  <ul id="lista-carrito"></ul>
+  <p id="total-carrito"><strong>Total:</strong> S/ 0.00</p>
+  <button id="vaciar-carrito">Vaciar carrito</button>
+  <a id="enviar-pedido" class="btn-wsp" target="_blank">Enviar pedido por WhatsApp</a>
+  
+  <button id="cerrar-carrito">Cerrar</button>
+</div>
+
 
   <footer>
     <p>&copy; 2025 MariArte Accesorios - Diseñado con ❤️</p>
     <p>Síguenos en Instagram: <a href="https://www.instagram.com/mariarte.accesorios" target="_blank">@mariarte.accesorios</a></p>
   </footer>
 
-  <script src="js/carrito.js"></script>
 </body>
 </html>
