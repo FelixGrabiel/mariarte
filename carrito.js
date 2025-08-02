@@ -23,27 +23,25 @@ document.addEventListener('DOMContentLoaded', () => {
     guardarCarrito();
     actualizarCarrito();
   });
-enviarPedido.addEventListener('click', () => {
-  if (carrito.length === 0) {
-    alert('Tu carrito está vacío.');
-    return;
-  }
 
-  let mensaje = '🛍️ *MariArte - Pedido por WhatsApp* 🛍️\n\n';
-  carrito.forEach(producto => {
-    mensaje += `🔹 *${producto.nombre}* x${producto.cantidad} - S/.${(producto.precio * producto.cantidad).toFixed(2)}\n`;
+  enviarPedido.addEventListener('click', () => {
+    if (carrito.length === 0) {
+      alert('Tu carrito está vacío.');
+      return;
+    }
+
+    let mensaje = '🛍️ *MariArte - Pedido por WhatsApp* 🛍️\n\n';
+    carrito.forEach(producto => {
+      mensaje += `🔹 *${producto.nombre}* x${producto.cantidad} - S/.${(producto.precio * producto.cantidad).toFixed(2)}\n`;
+    });
+
+    const total = carrito.reduce((acc, item) => acc + item.precio * item.cantidad, 0).toFixed(2);
+    mensaje += `\n💰 *Total: S/.${total}*`;
+
+    const numeroWhatsApp = '51928850901'; // Asegúrate de que este número esté bien escrito
+    const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
+    window.open(url, '_blank');
   });
-
-  const total = carrito.reduce((acc, item) => acc + item.precio * item.cantidad, 0).toFixed(2);
-  mensaje += `\n💰 *Total: S/.${total}*`;
-
-  // Asegúrate de que el número esté en formato correcto
-  const numeroWhatsApp = '51928850901'; // Reemplaza si es otro
-
-  const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
-  window.open(url, '_blank');
-});
-
 
   function guardarCarrito() {
     localStorage.setItem('carrito', JSON.stringify(carrito));
@@ -63,7 +61,6 @@ enviarPedido.addEventListener('click', () => {
           <button class="eliminar" data-index="${index}">🗑️</button>
         </div>
       `;
-
       listaCarrito.appendChild(li);
       total += item.precio * item.cantidad;
     });
@@ -126,29 +123,28 @@ enviarPedido.addEventListener('click', () => {
       guardarCarrito();
       actualizarCarrito();
 
-      // Animación visual al agregar
       carritoBtn.classList.add('carrito-animado');
       setTimeout(() => {
         carritoBtn.classList.remove('carrito-animado');
       }, 400);
     });
   });
-pagarCarrito.addEventListener('click', () => {
-  if (carrito.length === 0) {
-    alert('No hay productos en el carrito para pagar.');
-    return;
-  }
 
-  const total = carrito.reduce((acc, item) => acc + item.precio * item.cantidad, 0).toFixed(2);
+  pagarCarrito.addEventListener('click', () => {
+    if (carrito.length === 0) {
+      alert('No hay productos en el carrito para pagar.');
+      return;
+    }
 
-  // Simulación de pago
-  alert(`✅ Gracias por tu compra.\nTotal a pagar: S/.${total}\nPor ahora este botón es solo demostrativo.`);
+    const total = carrito.reduce((acc, item) => acc + item.precio * item.cantidad, 0).toFixed(2);
 
-  // Aquí puedes vaciar el carrito si quieres
-  // carrito = [];
-  // guardarCarrito();
-  // actualizarCarrito();
-});
+    alert(`✅ Gracias por tu compra.\nTotal a pagar: S/.${total}\nPor ahora este botón es solo demostrativo.`);
 
-  actualizarCarrito(); // Inicializar al cargar
+    // Si deseas vaciar el carrito después del pago, descomenta estas líneas:
+    // carrito = [];
+    // guardarCarrito();
+    // actualizarCarrito();
+  });
+
+  actualizarCarrito(); // Inicializar carrito al cargar
 });
