@@ -132,6 +132,10 @@ footer a {
 .carrusel-auto img:hover {
   transform: scale(1.1);
 }
+.modal-carrito button:hover,
+.modal-carrito a:hover {
+  background-color: #c2185b;
+}
 
 /* Responsive */
 @media (max-width: 768px) {
