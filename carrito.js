@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const cerrarCarrito = document.getElementById('cerrar-carrito');
   const vaciarCarrito = document.getElementById('vaciar-carrito');
   const enviarPedido = document.getElementById('enviar-pedido');
+  const pagarCarrito = document.getElementById('pagar-carrito');
 
   let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
@@ -22,21 +23,27 @@ document.addEventListener('DOMContentLoaded', () => {
     guardarCarrito();
     actualizarCarrito();
   });
+enviarPedido.addEventListener('click', () => {
+  if (carrito.length === 0) {
+    alert('Tu carrito está vacío.');
+    return;
+  }
 
-  enviarPedido.addEventListener('click', () => {
-    if (carrito.length === 0) {
-      alert('Tu carrito está vacío.');
-      return;
-    }
-
-    let mensaje = 'Hola, quiero pedir los siguientes productos:%0A';
-    carrito.forEach(producto => {
-      mensaje += `- ${producto.nombre} x${producto.cantidad} - S/.${(producto.precio * producto.cantidad).toFixed(2)}%0A`;
-    });
-
-    const url = `https://wa.me/51928850901?text=${mensaje}`;
-    window.open(url, '_blank');
+  let mensaje = '🛍️ *MariArte - Pedido por WhatsApp* 🛍️\n\n';
+  carrito.forEach(producto => {
+    mensaje += `🔹 *${producto.nombre}* x${producto.cantidad} - S/.${(producto.precio * producto.cantidad).toFixed(2)}\n`;
   });
+
+  const total = carrito.reduce((acc, item) => acc + item.precio * item.cantidad, 0).toFixed(2);
+  mensaje += `\n💰 *Total: S/.${total}*`;
+
+  // Asegúrate de que el número esté en formato correcto
+  const numeroWhatsApp = '51928850901'; // Reemplaza si es otro
+
+  const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
+  window.open(url, '_blank');
+});
+
 
   function guardarCarrito() {
     localStorage.setItem('carrito', JSON.stringify(carrito));
@@ -126,6 +133,22 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 400);
     });
   });
+pagarCarrito.addEventListener('click', () => {
+  if (carrito.length === 0) {
+    alert('No hay productos en el carrito para pagar.');
+    return;
+  }
+
+  const total = carrito.reduce((acc, item) => acc + item.precio * item.cantidad, 0).toFixed(2);
+
+  // Simulación de pago
+  alert(`✅ Gracias por tu compra.\nTotal a pagar: S/.${total}\nPor ahora este botón es solo demostrativo.`);
+
+  // Aquí puedes vaciar el carrito si quieres
+  // carrito = [];
+  // guardarCarrito();
+  // actualizarCarrito();
+});
 
   actualizarCarrito(); // Inicializar al cargar
 });
