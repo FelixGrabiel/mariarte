@@ -14,6 +14,7 @@ header {
   justify-content: space-between;
   background-color: #ffe6ed;
   padding: 10px 20px;
+  flex-wrap: wrap;
 }
 
 .logo {
@@ -22,23 +23,30 @@ header {
 }
 
 .logo img {
-  height: 100px;
+  height: 80px;
   margin-right: 10px;
   border-radius: 50%;
 }
 
 .logo h1 {
   font-family: 'Dancing Script', cursive;
-  font-size: 2rem;
+  font-size: 1.8rem;
   color: #d63384;
   margin: 0;
 }
 
 /* Menú de navegación */
+nav {
+  display: flex;
+  align-items: center;
+}
+
 nav ul {
   list-style: none;
   display: flex;
   gap: 20px;
+  padding: 0;
+  margin: 0;
 }
 
 nav ul li a {
@@ -53,6 +61,7 @@ nav ul li a {
   background: none;
   border: none;
   cursor: pointer;
+  margin-left: 20px;
 }
 
 /* Secciones */
@@ -89,7 +98,6 @@ nav ul li a {
   object-fit: contain;
   border-radius: 8px;
 }
-
 
 .producto p {
   margin: 10px 0;
@@ -130,9 +138,8 @@ nav ul li a {
 /* Modal Carrito */
 .modal-carrito {
   position: fixed;
-  top: 80px; /* debajo del header */
+  top: 80px;
   right: 0;
-  transform: none;
   background: white;
   border: 2px solid #d63384;
   padding: 20px;
@@ -142,7 +149,6 @@ nav ul li a {
   border-radius: 15px 0 0 15px;
   box-shadow: -3px 0 10px rgba(0, 0, 0, 0.1);
 }
-
 
 .modal-carrito h2 {
   font-family: 'Dancing Script', cursive;
@@ -198,6 +204,7 @@ footer a {
 footer a:hover {
   text-decoration: underline;
 }
+
 /* Carrusel automático */
 .carrusel-auto {
   overflow: hidden;
@@ -222,9 +229,8 @@ footer a:hover {
   0% { transform: translateX(0); }
   100% { transform: translateX(-70%); }
 }
-/* Estilos para el botón de WhatsApp */
 
-
+/* Redes Sociales */
 .redes-sociales {
   margin-top: 30px;
   display: flex;
@@ -246,64 +252,53 @@ footer a:hover {
   background-color: #a61e60;
   transform: scale(1.1);
 }
+
 h2 {
   font-family: 'Dancing Script', cursive;
   color: #d63384;
   margin-bottom: 10px;
   text-align: center;
-
 }
-/* Estilos para móviles */
+
+/* ==== MEDIA QUERIES PARA CELULARES ==== */
 @media (max-width: 768px) {
   header {
     flex-direction: column;
     align-items: flex-start;
-    gap: 10px;
-  }
-
-  .logo {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    width: 100%;
   }
 
   nav ul {
     flex-direction: column;
-    width: 100%;
     gap: 10px;
-    padding: 0;
-    align-items: center;
+    margin-top: 10px;
+    width: 100%;
+    padding-left: 0;
+  }
+
+  .logo img {
+    height: 70px;
+  }
+
+  .carrito-btn {
+    margin-left: 0;
+    align-self: flex-end;
   }
 
   .productos-grid {
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  }
-
-  .modal-carrito {
-    width: 100%;
-    right: 0;
-    left: 0;
-    border-radius: 0;
-    top: 100px;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   }
 
   .carrusel-auto img {
     height: 200px;
   }
 
+  .modal-carrito {
+    width: 90%;
+    right: 5%;
+  }
+
   .redes-sociales {
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 15px;
-  }
-
-  .agregar-carrito {
-    padding: 6px 10px;
-    font-size: 14px;
-  }
-
-  .producto p {
-    font-size: 14px;
   }
 }
