@@ -5,28 +5,29 @@ document.addEventListener('DOMContentLoaded', () => {
   const totalCarrito = document.getElementById('total-carrito');
   const cerrarCarrito = document.getElementById('cerrar-carrito');
   const vaciarCarrito = document.getElementById('vaciar-carrito');
-  const enviarPedido = document.getElementById('enviar-pedido');
-  const pagarCarrito = document.getElementById('pagar-carrito');
+  const enviarPedido = document.getElementById('enviar-pedido'); // ID corregido
+  const pagarCarrito = document.getElementById('pagar-carrito');  // ID corregido
 
   let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
-  carritoBtn.addEventListener('click', () => {
+  carritoBtn?.addEventListener('click', () => {
     modalCarrito.style.display = modalCarrito.style.display === 'block' ? 'none' : 'block';
   });
 
-  cerrarCarrito.addEventListener('click', () => {
+  cerrarCarrito?.addEventListener('click', () => {
     modalCarrito.style.display = 'none';
   });
 
-  vaciarCarrito.addEventListener('click', () => {
+  vaciarCarrito?.addEventListener('click', () => {
     carrito = [];
     guardarCarrito();
     actualizarCarrito();
   });
 
-  enviarPedido.addEventListener('click', () => {
+  enviarPedido?.addEventListener('click', (e) => {
     if (carrito.length === 0) {
       alert('Tu carrito está vacío.');
+      e.preventDefault();
       return;
     }
 
@@ -38,9 +39,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const total = carrito.reduce((acc, item) => acc + item.precio * item.cantidad, 0).toFixed(2);
     mensaje += `\n💰 *Total: S/.${total}*`;
 
-    const numeroWhatsApp = '51928850901'; // Asegúrate de que este número esté bien escrito
+    const numeroWhatsApp = '51928850901';
     const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
+
     window.open(url, '_blank');
+    e.preventDefault();
+  });
+
+  pagarCarrito?.addEventListener('click', () => {
+    if (carrito.length === 0) {
+      alert('No hay productos en el carrito para pagar.');
+      return;
+    }
+
+    const total = carrito.reduce((acc, item) => acc + item.precio * item.cantidad, 0).toFixed(2);
+    alert(`✅ Gracias por tu compra.\nTotal a pagar: S/.${total}\n(Simulación de pago)`);
   });
 
   function guardarCarrito() {
@@ -61,13 +74,13 @@ document.addEventListener('DOMContentLoaded', () => {
           <button class="eliminar" data-index="${index}">🗑️</button>
         </div>
       `;
+
       listaCarrito.appendChild(li);
       total += item.precio * item.cantidad;
     });
 
-    totalCarrito.textContent = `Total: S/.${total.toFixed(2)}`;
+    totalCarrito.innerHTML = `<strong>Total:</strong> S/. ${total.toFixed(2)}`;
 
-    // Botones funcionales
     document.querySelectorAll('.restar').forEach(btn => {
       btn.addEventListener('click', () => {
         const index = parseInt(btn.getAttribute('data-index'));
@@ -123,28 +136,28 @@ document.addEventListener('DOMContentLoaded', () => {
       guardarCarrito();
       actualizarCarrito();
 
-      carritoBtn.classList.add('carrito-animado');
-      setTimeout(() => {
-        carritoBtn.classList.remove('carrito-animado');
-      }, 400);
+      carritoBtn?.classList.add('carrito-animado');
+      setTimeout(() => carritoBtn?.classList.remove('carrito-animado'), 400);
     });
   });
+// Filtro por categoría
+const botonesFiltro = document.querySelectorAll('.filtro');
+const productos = document.querySelectorAll('.producto');
 
-  pagarCarrito.addEventListener('click', () => {
-    if (carrito.length === 0) {
-      alert('No hay productos en el carrito para pagar.');
-      return;
-    }
+botonesFiltro.forEach(boton => {
+  boton.addEventListener('click', () => {
+    const categoria = boton.getAttribute('data-categoria');
 
-    const total = carrito.reduce((acc, item) => acc + item.precio * item.cantidad, 0).toFixed(2);
-
-    alert(`✅ Gracias por tu compra.\nTotal a pagar: S/.${total}\nPor ahora este botón es solo demostrativo.`);
-
-    // Si deseas vaciar el carrito después del pago, descomenta estas líneas:
-    // carrito = [];
-    // guardarCarrito();
-    // actualizarCarrito();
+    productos.forEach(producto => {
+      const catProducto = producto.getAttribute('data-categoria');
+      if (categoria === 'todos' || categoria === catProducto) {
+        producto.style.display = 'block';
+      } else {
+        producto.style.display = 'none';
+      }
+    });
   });
+});
 
-  actualizarCarrito(); // Inicializar carrito al cargar
+  actualizarCarrito();
 });
