@@ -1,56 +1,58 @@
-/* Reset y base */
-* {
+/* Estilos generales */
+body {
+  font-family: 'Poppins', sans-serif;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  font-family: 'Segoe UI', sans-serif;
-}
-
-body {
-  background-color: #fef6f9;
+  background-color: #fff8f9;
   color: #333;
-  line-height: 1.6;
 }
 
-/* Header */
+/* Estilos del header */
 header {
-  background-color: #fcd5ce;
-  padding: 20px;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #ffe6ed;
+  padding: 10px 20px;
 }
 
 .logo {
   display: flex;
-  flex-direction: column;
   align-items: center;
 }
 
 .logo img {
-  width: 100px;
-  height: auto;
+  height: 100px;
+  margin-right: 10px;
   border-radius: 50%;
-  margin-bottom: 10px;
 }
 
-/* Navegación */
+.logo h1 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 2rem;
+  color: #d63384;
+  margin: 0;
+}
+
+/* Menú de navegación */
 nav ul {
   list-style: none;
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
   gap: 20px;
-  margin-top: 10px;
 }
 
 nav ul li a {
   text-decoration: none;
-  color: #5d001e;
-  font-weight: bold;
-  transition: color 0.3s ease;
+  color: #d63384;
+  font-weight: 600;
 }
 
-nav ul li a:hover {
-  color: #c9184a;
+/* Botón carrito */
+.carrito-btn {
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
 /* Secciones */
@@ -59,265 +61,195 @@ nav ul li a:hover {
   text-align: center;
 }
 
-/* Galería de productos (mejorada) */
-.galeria {
+.seccion h2 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 2.2rem;
+  color: #d63384;
+  margin-bottom: 20px;
+}
+
+/* Productos */
+.productos-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 25px;
-  margin-top: 30px;
-  padding: 0 30px;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
 }
 
 .producto {
-  background-color: #fff0f3;
-  padding: 15px;
-  border-radius: 15px;
-  text-align: center;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.producto:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  border: 1px solid #f0c9d1;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: #fff0f5;
 }
 
 .producto img {
   width: 100%;
-  border-radius: 10px;
-  margin-bottom: 10px;
-}
-.productos-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 25px;
-  padding: 0 30px;
-  margin-top: 30px;
+  max-height: 300px;
+  object-fit: contain;
+  border-radius: 8px;
 }
 
-/* Botón Agregar al carrito */
-.producto button {
-  background-color: #ff758f;
+
+.producto p {
+  margin: 10px 0;
+  font-weight: 500;
+}
+
+.agregar-carrito {
+  background-color: #d63384;
   color: white;
   border: none;
-  padding: 8px 15px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: 'Dancing Script', cursive;
+}
+
+/* Filtros */
+#filtros {
+  margin: 20px 0;
+}
+
+.filtro {
+  background-color: #fce4ec;
+  color: #d63384;
+  border: 1px solid #d63384;
+  padding: 6px 12px;
   border-radius: 20px;
   cursor: pointer;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
+  margin: 0 5px;
+  font-family: 'Poppins', sans-serif;
 }
 
-.producto button:hover {
-  background-color: #d63447;
-}
-
-/* Botón WhatsApp */
-.btn-wsp {
-  display: inline-block;
-  background-color: #25d366;
+.filtro:hover {
+  background-color: #d63384;
   color: white;
-  padding: 10px 20px;
-  border-radius: 30px;
-  text-decoration: none;
-  font-weight: bold;
-  margin-top: 15px;
-  transition: background-color 0.3s ease;
 }
 
-.btn-wsp:hover {
-  background-color: #1ebe5d;
+/* Modal Carrito */
+.modal-carrito {
+  position: fixed;
+  top: 80px; /* debajo del header */
+  right: 0;
+  transform: none;
+  background: white;
+  border: 2px solid #d63384;
+  padding: 20px;
+  z-index: 999;
+  display: none;
+  width: 300px;
+  border-radius: 15px 0 0 15px;
+  box-shadow: -3px 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+.modal-carrito h2 {
+  font-family: 'Dancing Script', cursive;
+  color: #d63384;
+}
+
+/* Botones del modal */
+#vaciar-carrito,
+#pagar-carrito,
+#cerrar-carrito,
+#enviar-pedido {
+  margin-top: 10px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 10px;
+  background-color: #d63384;
+  color: white;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+}
+
+#enviar-pedido {
+  display: inline-block;
+  text-decoration: none;
+  text-align: center;
+}
+
+/* WhatsApp Button */
+.btn-wsp {
+  background-color: #25D366;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 25px;
+  font-size: 16px;
+  cursor: pointer;
+  font-family: 'Dancing Script', cursive;
 }
 
 /* Footer */
 footer {
-  background-color: #fcd5ce;
-  text-align: center;
+  background-color: #ffe6ed;
   padding: 20px;
-  font-size: 14px;
-  color: #5d001e;
-  margin-top: 40px;
+  text-align: center;
+  color: #d63384;
 }
 
 footer a {
-  color: #5d001e;
-  text-decoration: underline;
+  color: #d63384;
+  text-decoration: none;
 }
 
+footer a:hover {
+  text-decoration: underline;
+}
 /* Carrusel automático */
 .carrusel-auto {
-  width: 100%;
   overflow: hidden;
-  background-color: #000;
-  padding: 15px 0;
+  width: 100%;
+  background-color: #fff0f5;
+  padding: 20px 0;
 }
 
 .carrusel-auto .imagenes {
   display: flex;
-  width: max-content;
-  animation: deslizar 40s linear infinite;
+  animation: deslizar 30s linear infinite;
+  gap: 20px;
 }
 
 .carrusel-auto img {
-  width: 280px;
-  height: 180px;
-  object-fit: cover;
-  margin: 0 10px;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-  transition: transform 0.3s ease;
+  height: 300px;
+  border-radius: 12px;
+  flex-shrink: 0;
 }
 
-.carrusel-auto .imagenes:hover {
-  animation-play-state: paused;
-}
-
-.carrusel-auto img:hover {
-  transform: scale(1.1);
-}
-
-/* Animaciones */
 @keyframes deslizar {
-  from { transform: translateX(0); }
-  to { transform: translateX(-100%); }
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-70%); }
+}
+/* Estilos para el botón de WhatsApp */
+
+
+.redes-sociales {
+  margin-top: 30px;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
 }
 
-@keyframes rebote {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.3); }
-  100% { transform: scale(1); }
-}
-
-.carrito-animado {
-  animation: rebote 0.4s ease;
-}
-
-/* Carrito */
-.carrito-btn {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background-color: #85ef03;
-  color: white;
-  border: none;
+.redes-sociales a {
+  font-size: 24px;
+  color: #fff;
+  background-color: #d63384;
   padding: 10px;
   border-radius: 50%;
-  font-size: 20px;
-  cursor: pointer;
-  z-index: 1000;
-}
-
-.modal-carrito {
-  display: none;
-  position: fixed;
-  top: 80px;
-  right: 20px;
-  width: 300px;
-  background: white;
-  color: black;
-  border: 1px solid #ccc;
-  padding: 20px;
-  z-index: 1000;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
-
-.modal-carrito h2 {
-  margin-top: 0;
-}
-
-.modal-carrito ul {
-  list-style: none;
-  padding: 0;
-}
-
-.modal-carrito button,
-.modal-carrito a {
-  margin-top: 10px;
-  display: block;
-  width: 100%;
-  text-align: center;
-  padding: 8px;
-  background-color: #0de7f3;
-  color: #161212;
-  border: none;
-  border-radius: 5px;
+  transition: background-color 0.3s, transform 0.3s;
   text-decoration: none;
 }
 
-.modal-carrito button:hover,
-.modal-carrito a:hover {
-  background-color: #c2185b;
+.redes-sociales a:hover {
+  background-color: #a61e60;
+  transform: scale(1.1);
 }
+h2 {
+  font-family: 'Dancing Script', cursive;
+  color: #d63384;
+  margin-bottom: 10px;
+  text-align: center;
 
-#lista-carrito button {
-  margin: 0 5px;
-  padding: 2px 6px;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-/* Botones individuales del carrito */
-.botones-carrito button {
-  margin-left: 5px;
-  padding: 2px 6px;
-  font-size: 14px;
-  border-radius: 4px;
-  border: none;
-  cursor: pointer;
-}
-
-/* Responsive mejorado */
-@media (max-width: 768px) {
-  nav ul {
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .logo h1 {
-    font-size: 1.5rem;
-  }
-
-  .seccion {
-    padding: 30px 15px;
-  }
-
-  .btn-wsp {
-    width: 80%;
-    padding: 12px;
-  }
-
-  .galeria {
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    padding: 0 15px;
-  }
-
-  .producto button {
-    font-size: 0.9rem;
-  }
-
-  .carrusel-auto img {
-    width: 220px;
-    height: 140px;
-  }
-}
-
-@media (max-width: 480px) {
-  header {
-    padding: 15px 10px;
-  }
-
-  nav ul li a {
-    font-size: 0.9rem;
-  }
-
-  .btn-wsp {
-    font-size: 0.9rem;
-  }
-
-  footer {
-    font-size: 12px;
-  }
-
-  .galeria {
-    grid-template-columns: 1fr;
-  }
 }
