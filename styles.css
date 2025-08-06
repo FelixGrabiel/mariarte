@@ -208,7 +208,7 @@ footer a:hover {
 
 .carrusel-auto .imagenes {
   display: flex;
-  animation: deslizar 30s linear infinite;
+  animation: deslizar 10s linear infinite;
   gap: 20px;
 }
 
